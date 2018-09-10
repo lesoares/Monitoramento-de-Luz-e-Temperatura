@@ -24,18 +24,23 @@ public class Grafico {
         dataset.addValue(30.1, "Maximo", "Hora 3");
         dataset.addValue(40.1, "Maximo", "Hora 4");
         dataset.addValue(70.1, "Maximo", "Hora 5");
+    }
+    
+    public void criaGrafico(DefaultCategoryDataset dataset, String titulo, String tituloY, String tituloX){
         
         JFreeChart criaGrafico = ChartFactory.createLineChart("Título", "Hora", "Valor", dataset, PlotOrientation.VERTICAL,true,true,false);
         
         try {
             System.out.println("Criando o gráfico...");
-            OutputStream png = new FileOutputStream("GraficoSimples.png");
+            OutputStream png = new FileOutputStream("Grafico.png");
             ChartUtilities.writeChartAsPNG(png, criaGrafico, 500, 400);
-            png.close();
-        } catch (IOException io) {
-            System.out.println("Erro: " + io.getMessage());
+            png.close();            
+        } catch (IOException e) {
+            System.out.println("Erro: " + e.getMessage());
         }
+        
         System.out.println("Gráfico criado.");
+        
     }
     
 }
