@@ -13,8 +13,8 @@ Esse projeto visa medir temperatura e luminosiadade local, coletar os valores at
 8. 1 Medidor de Temperatura
 9. 1 LED
 
-##Procedimento:
+## Procedimento:
 Conectar tudo nas portas indicadas e abrir o código no Netbeans ou outra IDE Java familiarizada. Após isso, comunicar o Javino com o Arduino, como ensinado em aula e rodar no Java.
 
-##Alunos:
-João, Julia, Leticia e Marcelo 
+## Alunos:
+João, Julia, Leticia e Marcelo
