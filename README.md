@@ -1,6 +1,6 @@
 # Monitoramento de Luz e Temperatura
 
-Esse projeto visa medir temperatura e luminosiadade local, coletar os valores através de Javino e plotar um gráfico com esses valores.
+Esse projeto visa medir temperatura e luminosidade local, coletar os valores através de Javino e plotar um gráfico com esses valores.
 
 ## Material Utilizado:
 1. Netbeans 8.1
