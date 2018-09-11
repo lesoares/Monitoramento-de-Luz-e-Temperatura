@@ -14,7 +14,6 @@ void setup() {
   pinMode(led, OUTPUT);
   pinMode(LDR, INPUT);
   Serial.begin(9600);
-  
 
 }
 
@@ -23,22 +22,17 @@ void loop() {
   if(javino.availablemsg()){
    msg = javino.getmsg();
 
-   if(msg = "ligar"){
+   if(msg = "dados"){
+    digitalWrite(led, HIGH);
     temperature = (analogRead(LM35) * 0.488759);
-    delay(500);
-
+    delay(1000);
 
     String temp ="";
     temp+= temperature;
-   
-    javino.sendmsg(temp);
-    
+       
     light = analogRead(LDR);
-    delay(500);
 
-    digitalWrite(led, HIGH);
-
-    javino.sendmsg(String(light));
+    javino.sendmsg(temp +" "+ String(light));
  
     digitalWrite(led, LOW);
     }
