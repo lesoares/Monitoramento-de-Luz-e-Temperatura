@@ -31,7 +31,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class MapsActivity extends AppCompatActivity {
+public class MapsActivity extends AppCompatActivity  implements OnMapReadyCallback{
 
     LocationManager locationManager;
     LocationListener locationListener;
@@ -55,11 +55,13 @@ public class MapsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                Toast.makeText(getApplicationContext(), location.toString(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), location.toString(), Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -87,9 +89,16 @@ public class MapsActivity extends AppCompatActivity {
 
     public void onMapReady(GoogleMap googleMap){
         mMap = googleMap;
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
-        LatLng ic_uff = new LatLng(-22.90616, -43.1335999);
+        } else {
+        LatLng ic_uff = new LatLng(locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER).getLatitude(), locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER).getLongitude());
+            System.out.println(ic_uff);
         mMap.addMarker(new MarkerOptions().position(ic_uff).title("IDOSO ESTÁ AQUI"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ic_uff, 15));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ic_uff, 15));
+        }
+
     }
 }
